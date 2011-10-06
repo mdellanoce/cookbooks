@@ -24,6 +24,8 @@ node[:nodejs][:versions].each do |nodejs_version|
     creates "#{home}/.nvm/v#{nodejs_version}"
     user user
     group user
+    cwd home
+    environment 'HOME' => home
     code "#{nvm} install v#{nodejs_version}"
   end
 end
