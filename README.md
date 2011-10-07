@@ -41,6 +41,7 @@ vagrant up
 
 ... from a directory containing both this Vagrantfile, and this repository
 checked out, it will:
+
 * download the base box (if you don't have it already),
 * install Vim,
 * install Node.js with NVM (defaults to 0.4.12), and
