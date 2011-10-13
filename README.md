@@ -22,6 +22,7 @@ Vagrant::Config.run do |config|
     
     chef.add_recipe "vim"
     chef.add_recipe "ssh"
+		chef.add_recipe "cairo"
     chef.add_recipe "nodejs"
     
     chef.json.merge!({
