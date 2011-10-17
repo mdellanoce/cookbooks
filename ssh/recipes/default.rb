@@ -1,5 +1,5 @@
 user = "vagrant"
-ssh = "/var/ssh"
+ssh = "/vagrant/.ssh"
 keys = ["id_rsa", "id_rsa.pub"]
 
 keys.each do |key|
