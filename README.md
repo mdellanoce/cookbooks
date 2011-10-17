@@ -12,10 +12,6 @@ Vagrant::Config.run do |config|
   config.vm.box_url = "http://files.vagrantup.com/lucid32.box"
 
   config.vm.forward_port "http", 80, 8080
-  
-  if File.exists? ssh_dir
-    config.vm.share_folder("my-folder", "/var/ssh", ssh_dir)
-  end
 
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = "cookbooks"
