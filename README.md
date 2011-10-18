@@ -17,7 +17,7 @@ Vagrant::Config.run do |config|
     chef.cookbooks_path = "cookbooks"
     
     chef.add_recipe "vim"
-    chef.add_recipe "ssh"
+    chef.add_recipe "ssh::vagrant"
     chef.add_recipe "cairo"
     chef.add_recipe "nodejs"
     
