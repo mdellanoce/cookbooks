@@ -5,8 +5,6 @@ Cookbooks that I use for [vagrant](http://vagrantup.com)
 # Example Vagrantfile
 
 <pre>
-ssh_dir = File.join(ENV['HOME'], '.ssh')
-
 Vagrant::Config.run do |config|
   config.vm.box = "nodejs"
   config.vm.box_url = "http://files.vagrantup.com/lucid32.box"
