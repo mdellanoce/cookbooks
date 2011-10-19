@@ -6,10 +6,9 @@ Cookbooks that I use for [vagrant](http://vagrantup.com)
 
 <pre>
 Vagrant::Config.run do |config|
-  config.vm.box = "nodejs"
-  config.vm.box_url = "http://files.vagrantup.com/lucid32.box"
+  config.vm.box = "oneiric32"
 
-  config.vm.forward_port "http", 80, 8080
+  config.vm.forward_port "http", 8000, 8000
 
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = "cookbooks"
@@ -17,14 +16,8 @@ Vagrant::Config.run do |config|
     chef.add_recipe "vim"
     chef.add_recipe "ssh::vagrant"
     chef.add_recipe "git::vagrant"
-    chef.add_recipe "cairo"
     chef.add_recipe "nodejs"
-    
-    chef.json.merge!({
-      :nodejs => {
-        :versions => ["0.4.12"]
-      }
-    })
+		chef.add_recipe "nodejs::canvas"
   end
 end
 </pre>

@@ -5,33 +5,28 @@ package 'libreadline-dev'
 package 'git-core'
 package 'curl'
 
-user = "vagrant"
-home = "/home/#{user}"
-nvm = "source #{home}/.nvm/nvm.sh; nvm"
-
-git "#{home}/.nvm" do
-  repository "git://github.com/creationix/nvm.git"
-  user user
-  group user
+bash "Add NodeJS repository" do
+	code "add-apt-repository ppa:chris-lea/node.js -y && apt-get update -y"
+	not_if "test -f /etc/apt/sources.list.d/chris-lea-node_js*"
 end
 
-file "#{home}/.bashrc" do
-  content ". ~/.nvm/nvm.sh"
+package 'nodejs'
+package 'nodejs-dev'
+
+npm = "/root/npm"
+
+git npm do
+	user "root"
+  repository "git://github.com/isaacs/npm.git"
 end
 
-node[:nodejs][:versions].each do |nodejs_version|
-  bash "installing node.js #{nodejs_version}" do
-    creates "#{home}/.nvm/v#{nodejs_version}"
-    user user
-    group user
-    cwd home
-    environment 'HOME' => home
-    code "#{nvm} install v#{nodejs_version}"
-  end
+bash "Install NPM" do
+	creates "/usr/bin/npm"
+	cwd npm
+	code "make install"
 end
 
-bash "set default node.js version" do
-  user user
-  group user
-  code "#{nvm} alias default v#{node[:nodejs][:versions].first}"
+directory npm do
+  recursive true
+  action :delete
 end
