@@ -14,14 +14,16 @@ package 'nodejs'
 package 'nodejs-dev'
 
 npm = "/root/npm"
+npm_bin = "/usr/bin/npm"
 
 git npm do
 	user "root"
   repository "git://github.com/isaacs/npm.git"
+	not_if "test -f #{npm_bin}"
 end
 
 bash "Install NPM" do
-	creates "/usr/bin/npm"
+	creates npm_bin
 	cwd npm
 	code "make install"
 end
